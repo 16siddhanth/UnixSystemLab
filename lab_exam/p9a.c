@@ -9,11 +9,11 @@
 int main(){
 
     struct stat statbuf;
-    stat("foo", &statbuf);
-    chmod("foo", statbuf.st_mode & ~S_IXGRP);
+    stat("foo.txt", &statbuf);
+    chmod("foo.txt", statbuf.st_mode & ~S_IXGRP);
     /* set absolute mode to "rw-r--r--" */
-    chmod("bar", S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    
+    chmod("bar.txt", S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    system("ls -l foo.txt bar.txt");
     return 0;
 }
 
@@ -29,9 +29,10 @@ int main(){
 
 int main(){
     umask(0);
-    creat("foo", RWRWRW);
+    creat("foo.txt", RWRWRW);
     umask(S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
-    creat("bar", RWRWRW)
+    creat("bar.txt", RWRWRW);
+    system("ls -l foo.txt bar.txt");
     
     return 0;
 }

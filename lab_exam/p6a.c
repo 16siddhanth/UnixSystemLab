@@ -7,7 +7,7 @@
 #include <string.h>
 
 int main() {
-    char filename[] = "input.txt";
+    char filename[] = "t1.txt";
     
     int fd = open(filename, O_RDWR);
     char buffer[10];
